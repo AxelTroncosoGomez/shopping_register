@@ -28,37 +28,44 @@ class _ShoppingCartState extends State<ShoppingCart> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Compras del super'),
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.calculate),
+    return Theme(
+        data: ThemeData(
+          brightness: Brightness.dark,
+          primaryColor: Colors.pink[800],
+          hintColor: Colors.greenAccent[400],
+        ),
+        child: Scaffold(
+          appBar: AppBar(
+            title: const Text('Compras del super'),
+            actions: <Widget>[
+              IconButton(
+                icon: const Icon(Icons.calculate),
+                onPressed: () {
+                  final totalSpend = _calculateTotalSpend();
+                  final snackBar = SnackBar(
+                    content: Text('Valor total: \$$totalSpend'),
+                    duration: const Duration(seconds: 2),
+                  );
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                },
+              )
+            ],
+          ),
+          body: Column(
+            children: <Widget>[
+              _buildTableHeader(),
+              Expanded(child: _buildTableBody()),
+            ],
+          ),
+          floatingActionButton: FloatingActionButton(
             onPressed: () {
-              final totalSpend = _calculateTotalSpend();
-              final snackBar = SnackBar(
-                content: Text('Valor total: \$$totalSpend'),
-                duration: const Duration(seconds: 2),
-              );
-              ScaffoldMessenger.of(context).showSnackBar(snackBar);
+              setState(() {
+                products.add(Product());
+              });
             },
-          )
-        ],
-      ),
-      body: Column(
-        children: <Widget>[
-          _buildTableHeader(),
-          Expanded(child: _buildTableBody()),
-        ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          setState(() {
-            products.add(Product());
-          });
-        },
-        child: const Icon(Icons.add),
-      ),
+            child: const Icon(Icons.add),
+          ),
+        )
     );
   }
 
@@ -69,7 +76,7 @@ class _ShoppingCartState extends State<ShoppingCart> {
           vertical: 8
       ),
       decoration: BoxDecoration(
-        color: Colors.grey[300],
+        color: Colors.green[900],
         border: const Border(
             bottom: BorderSide(
                 color: Colors.grey
