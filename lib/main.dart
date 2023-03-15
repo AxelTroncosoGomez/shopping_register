@@ -30,9 +30,9 @@ class _ShoppingCartState extends State<ShoppingCart> {
   Widget build(BuildContext context) {
     return Theme(
         data: ThemeData(
-          brightness: Brightness.dark,
+          brightness: Brightness.light,
           primaryColor: Colors.pink[800],
-          hintColor: Colors.greenAccent[400],
+          hintColor: Colors.blue[800],
         ),
         child: Scaffold(
           appBar: AppBar(
@@ -76,12 +76,7 @@ class _ShoppingCartState extends State<ShoppingCart> {
           vertical: 8
       ),
       decoration: BoxDecoration(
-        color: Colors.green[900],
-        border: const Border(
-            bottom: BorderSide(
-                color: Colors.grey
-            )
-        ),
+        color: Colors.blue[800],
       ),
       child: Row(
         // mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -93,7 +88,10 @@ class _ShoppingCartState extends State<ShoppingCart> {
             ),
             child: const Text(
               "Producto",
-              style: TextStyle(fontSize: 16.0),
+              style: TextStyle(
+                  fontSize: 16.0,
+                  color: Color.fromARGB(238,244,240,255)
+              ),
               textAlign: TextAlign.center,
             ),
           ),
@@ -104,7 +102,10 @@ class _ShoppingCartState extends State<ShoppingCart> {
             ),
             child: const Text(
               "Cantidad",
-              style: TextStyle(fontSize: 16.0),
+              style: TextStyle(
+                  fontSize: 16.0,
+                  color: Color.fromARGB(238,244,240,255)
+              ),
               textAlign: TextAlign.center,
             ),
           ),
@@ -114,7 +115,10 @@ class _ShoppingCartState extends State<ShoppingCart> {
             ),
             child: const Text(
               "Precio",
-              style: TextStyle(fontSize: 16.0),
+              style: TextStyle(
+                  fontSize: 16.0,
+                  color: Color.fromARGB(238,244,240,255)
+              ),
               textAlign: TextAlign.center,
             ),
           ),
@@ -136,6 +140,14 @@ class _ShoppingCartState extends State<ShoppingCart> {
                 textAlign: TextAlign.center,
                 textAlignVertical: TextAlignVertical.center,
                 onChanged: (value) => products[index].name = value,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Colors.blue, // set the color of the border
+                      width: 0.5, // set the width of the border
+                    ),
+                  ),
+                ),
               ),
             ),
             Expanded(
@@ -147,6 +159,14 @@ class _ShoppingCartState extends State<ShoppingCart> {
                 keyboardType: TextInputType.number,
                 onChanged: (value) =>
                 products[index].amount = int.tryParse(value) ?? 1,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Colors.blue, // set the color of the border
+                      width: 0.5, // set the width of the border
+                    ),
+                  ),
+                ),
               ),
             ),
             Expanded(
@@ -158,6 +178,14 @@ class _ShoppingCartState extends State<ShoppingCart> {
                 keyboardType: TextInputType.number,
                 onChanged: (value) =>
                 products[index].price = double.tryParse(value) ?? 0,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Colors.blue, // set the color of the border
+                      width: 0.5, // set the width of the border
+                    ),
+                  ),
+                ),
               ),
             ),
           ],
